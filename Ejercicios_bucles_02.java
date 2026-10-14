@@ -1,6 +1,3 @@
-/**
- * Ejercicios_bucles_02
- */
 import java.util.Scanner;
 
 public class Ejercicios_bucles_02 {
@@ -8,53 +5,8 @@ public class Ejercicios_bucles_02 {
     static Scanner teclado = new Scanner(System.in);
 
     public static void main(String[] args) {
-
-        int opcion;
-
-        do {
-            System.out.println("\n===== EJERCICIOS DE BUCLES =====");
-            System.out.println("1. Ejercicio 1");
-            System.out.println("2. Ejercicio 2");
-            System.out.println("3. Ejercicio 3");
-            System.out.println("4. Ejercicio 4");
-            System.out.println("5. Ejercicio 5");
-            System.out.println("6. Ejercicio 6");
-            System.out.println("7. Ejercicio 7");
-            System.out.println("8. Ejercicio 8");
-            System.out.println("9. Ejercicio 9");
-            System.out.println("10. Ejercicio 10");
-            System.out.println("11. Ejercicio 11");
-            System.out.println("12. Ejercicio 12");
-            System.out.println("13. Ejercicio 13");
-            System.out.println("0. Salir");
-            System.out.print("Elige un ejercicio: ");
-
-            opcion = teclado.nextInt();
-
-            switch (opcion) {
-                case 1: ejercicio1(); break;
-                case 2: ejercicio2(); break;
-                case 3: ejercicio3(); break;
-                case 4: ejercicio4(); break;
-                case 5: ejercicio5(); break;
-                case 6: ejercicio6(); break;
-                case 7: ejercicio7(); break;
-                case 8: ejercicio8(); break;
-                case 9: ejercicio9(); break;
-                case 10: ejercicio10(); break;
-                case 11: ejercicio11(); break;
-                case 12: ejercicio12(); break;
-                case 13: ejercicio13(); break;
-                case 0:
-                    System.out.println("Fin del programa.");
-                    break;
-                default:
-                    System.out.println("Opción incorrecta.");
-            }
-
-        } while (opcion != 0);
-
-        teclado.close();
+        ejercicio5();
+        
     }
 
     // EJERCICIO 1:
@@ -67,11 +19,14 @@ public class Ejercicios_bucles_02 {
         int numero = teclado.nextInt();
 
         for (int i = 1; i <= numero; i++) {
-            for (int j = 1; j <= numero; j++) {
-                System.out.print(j);
+
+            for (int j = 1; j <= i; j++) {
+             System.out.print(j);
+             
             }
-            System.out.println();
+            System.out.println("");
         }
+       
     }
 
     // EJERCICIO 2:
@@ -83,8 +38,8 @@ public class Ejercicios_bucles_02 {
         int numero = teclado.nextInt();
 
         for (int i = 1; i <= numero; i++) {
-            for (int j = numero; j >= 1; j--) {
-                System.out.print(j);
+            for (int j = 0 ; j < numero; j++) {
+                System.out.print(numero - j);
             }
             System.out.println();
         }
@@ -100,10 +55,9 @@ public class Ejercicios_bucles_02 {
         int numero = teclado.nextInt();
 
         for (int i = 1; i <= numero; i++) {
-            for (int j = 1; j <= i; j++) {
+            for (int j = 0; j < numero; j++) {
                 System.out.print(j);
             }
-            System.out.println();
         }
     }
 
@@ -124,24 +78,26 @@ public class Ejercicios_bucles_02 {
     // Preguntar cuántos números se quieren leer, leer esa cantidad
     // de números y calcular el promedio de los valores introducidos.
     public static void ejercicio5() {
+        double suma = 0;
+        int cantidad = 0;
+        double promedio = suma / cantidad;
 
         System.out.print("¿Cuántos números quieres introducir? ");
-        int cantidad = teclado.nextInt();
+
+        cantidad = teclado.nextInt();
 
         if (cantidad <= 0) {
             System.out.println("La cantidad debe ser mayor que cero.");
             return;
         }
 
-        double suma = 0;
 
         for (int i = 1; i <= cantidad; i++) {
             System.out.print("Introduce el número " + i + ": ");
             double numero = teclado.nextDouble();
-            suma += numero;
+            suma = suma + numero;
         }
 
-        double promedio = suma / cantidad;
 
         System.out.println("El promedio es: " + promedio);
     }
@@ -471,4 +427,3 @@ public class Ejercicios_bucles_02 {
         System.out.println();
     }
 }
-```
