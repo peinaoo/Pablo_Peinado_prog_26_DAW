@@ -5,7 +5,7 @@ public class Ejercicios_bucles_02 {
     static Scanner teclado = new Scanner(System.in);
 
     public static void main(String[] args) {
-        ejercicio5();
+        ejercicio6();
         
     }
 
@@ -80,24 +80,27 @@ public class Ejercicios_bucles_02 {
     public static void ejercicio5() {
         double suma = 0;
         int cantidad = 0;
-        double promedio = suma / cantidad;
+        
 
         System.out.print("¿Cuántos números quieres introducir? ");
-
+        
         cantidad = teclado.nextInt();
 
         if (cantidad <= 0) {
             System.out.println("La cantidad debe ser mayor que cero.");
-            return;
+            
         }
+        else{
 
-
-        for (int i = 1; i <= cantidad; i++) {
+            for (int i = 1; i <= cantidad; i++) {
             System.out.print("Introduce el número " + i + ": ");
             double numero = teclado.nextDouble();
             suma = suma + numero;
+            }
+
         }
 
+        double promedio = suma / cantidad;  
 
         System.out.println("El promedio es: " + promedio);
     }
@@ -106,75 +109,41 @@ public class Ejercicios_bucles_02 {
     // Leer un número por teclado e indicar si es primo o no.
     // Los números primos solo son divisibles por sí mismos y por 1.
     public static void ejercicio6() {
-
+        int recuento_divisibles = 0;
         System.out.print("Introduce un número: ");
         int numero = teclado.nextInt();
+        
 
-        boolean primo = true;
 
-        if (numero < 2) {
-            primo = false;
-        } else {
-            for (int i = 2; i <= numero / i; i++) {
-                if (numero % i == 0) {
-                    primo = false;
-                    break;
-                }
+
+        for (int i = 1; i <= numero; i++) {
+            int resto = numero%i;
+            if (resto == 0){
+                recuento_divisibles = recuento_divisibles + 1;
             }
         }
 
-        if (primo) {
-            System.out.println(numero + " es primo.");
-        } else {
-            System.out.println(numero + " no es primo.");
+        if (recuento_divisibles == 2) {
+            System.out.println("El numero es primo");
         }
+        else{
+            System.out.println("El numero no es primo");
+        }
+
     }
+
+        
 
     // EJERCICIO 7:
     // Leer números enteros hasta teclear 0 y mostrar el máximo,
     // el mínimo y la media de todos ellos.
     // El 0 solo sirve para finalizar y no se cuenta.
     public static void ejercicio7() {
-
-        int numero;
-        int maximo = 0;
-        int minimo = 0;
-        int cantidad = 0;
-        long suma = 0;
-
-        System.out.println("Introduce números enteros (0 para terminar):");
-        numero = teclado.nextInt();
-
-        while (numero != 0) {
-
-            if (cantidad == 0) {
-                maximo = numero;
-                minimo = numero;
-            } else {
-                if (numero > maximo) {
-                    maximo = numero;
-                }
-
-                if (numero < minimo) {
-                    minimo = numero;
-                }
-            }
-
-            suma += numero;
-            cantidad++;
-
-            numero = teclado.nextInt();
-        }
-
-        if (cantidad == 0) {
-            System.out.println("No has introducido ningún número.");
-        } else {
-            double media = (double) suma / cantidad;
-
-            System.out.println("Máximo: " + maximo);
-            System.out.println("Mínimo: " + minimo);
-            System.out.println("Media: " + media);
-        }
+        boolean contador = false; 
+        int numero_entero_suma = 0;
+        System.out.println("Introduce un numero: ");
+        
+        
     }
 
     // EJERCICIO 8:
