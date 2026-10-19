@@ -6,7 +6,7 @@ public class Ejercicios_bucles_02 {
     static Scanner teclado = new Scanner(System.in);
 
     public static void main(String[] args) throws InterruptedException{
-        Secuencia_fibonacci();
+        ejercicio12();
         
     }
 
@@ -217,6 +217,114 @@ public class Ejercicios_bucles_02 {
 
     } 
 
+    /*Ejercicio 10: Solicita al usuario una cadena y comprueba el número de vocales que tiene.
+    Deberás usar el método charAT(i) de la clase String para extraer un carácter de la cadena, donde i es
+    la posición del carácter de la cadena que queremos obtener. Por ejemplo, si quisiéramos obtener el
+    carácter número de 5 de una cadena lo haríamos así: cadena.charAT(i)
+    */
+    public static void ejercicio13 (){
+
+
+        String cadena_emitida_usuario = "";
+        int contador_vocales = 0;
+
+        boolean punto_control = false; 
+        
+
+        while (punto_control == false) {
+            
+        
+            System.out.println("Introduce la cadena de texto: ");
+            cadena_emitida_usuario = teclado.nextLine();
+
+            if (cadena_emitida_usuario.matches(".*\\d.*")) {
+                System.out.println("Cadena no validada");
+                System.out.println();
+            }
+            else {
+                
+                punto_control = true;
+            }
+        
+        }
+
+        for (int i = 0; i < cadena_emitida_usuario.length(); i++) {
+            
+            
+            if ('A' == cadena_emitida_usuario.toUpperCase().charAt(i) || 'E' == cadena_emitida_usuario.toUpperCase().charAt(i) || 
+                'I' == cadena_emitida_usuario.toUpperCase().charAt(i) || 'O' == cadena_emitida_usuario.toUpperCase().charAt(i) ||
+                'U' == cadena_emitida_usuario.toUpperCase().charAt(i)) {
+                contador_vocales++;
+            }
+        }
+
+        System.out.println("La cadena de texto " + cadena_emitida_usuario + " tiene " + contador_vocales + " vocales");
+
+    }
+
+    /*Ejercicio 12: Realiza un programa que compruebe si dos números son amigos. Para ello hay que
+    comprobar que la suma de todos los divisores del primer número (sin contar con él) es el segundo
+    número, y que la suma de todos los divisores propios del segundo número (sin contar con él) es el
+    primer número. Por ejemplo:
+    - Los divisores propios de 220 son 1, 2, 4, 5, 10, 11, 20, 22, 44, 55 y 110. Su suma es 284.
+    - Los divisores propios de 284 son 1, 2, 4, 71 y 142. Su suma es 220.
+    - Por tanto, 220 y 284 son amigos.
+    */
+    public static void comprobacionAmigos(int numero_1, int numero_2){
+
+        
+
+        int contador_divisores_numero_1 = 0;
+        int suma_divisores_numero_1 = 0;
+
+        int contador_divisores_numero_2 = 0;
+        int suma_divisores_numero_2 = 0;
+
+        for (int i = 1; i < numero_1; i++) {
+            if (numero_1%i == 0) {
+                contador_divisores_numero_1++;
+                suma_divisores_numero_1 = suma_divisores_numero_1 + i;
+            }
+        }
+        for (int i = 1; i < numero_2; i++) {
+            if (numero_2%i == 0) {
+                contador_divisores_numero_2++;
+                suma_divisores_numero_2 = suma_divisores_numero_2 + i;
+            }
+        }
+        
+        if (numero_1 == suma_divisores_numero_2 && numero_2 == suma_divisores_numero_1) {
+            System.out.println(numero_1 + " y " + numero_2  + " son numeros amigos");
+        }
+        else{
+            System.out.println(numero_1 + " y " + numero_2  + " no son numeros amigos");
+        }
+        
+
+
+            
+        }
+
+        
+    
+    public static void ejercicio12(){
+
+        int numero_1_insertado = 0;
+        int numero_2_insertado = 0;
+
+        System.out.println("Introduce el primer numero: ");
+
+        numero_1_insertado = teclado.nextInt();
+
+        System.out.println("Introduce el primer numero: ");
+
+        numero_2_insertado = teclado.nextInt();
+
+        comprobacionAmigos(numero_1_insertado,numero_2_insertado);
+
+        
+        
+    }
     /*Ejercicio 13: Realiza un algoritmo que permita calcular un número determinado de elementos de la
     serie de Fibonacci, teniendo en cuenta que cada uno es la suma de los dos elementos anteriores, con
     la excepción de los dos primeros, que son 0 y 1. Así, la serie estaría formada por los números: 0, 1, 1,
@@ -254,28 +362,7 @@ public class Ejercicios_bucles_02 {
 
     }
 
-    public static void ejercicio13 (){
-
-
-        
-
-        boolean puerta = false;
-
-
-        
-        while (puerta == false) {
-
-             
-
-            
-
-            
-            
-        }
-
-
-
-    }
+   
 
 
 
