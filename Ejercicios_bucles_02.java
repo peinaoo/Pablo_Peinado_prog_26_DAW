@@ -1,11 +1,12 @@
+import java.sql.Time;
 import java.util.Scanner;
 
 public class Ejercicios_bucles_02 {
 
     static Scanner teclado = new Scanner(System.in);
 
-    public static void main(String[] args) {
-        ejercicio6();
+    public static void main(String[] args) throws InterruptedException{
+        Secuencia_fibonacci();
         
     }
 
@@ -139,260 +140,160 @@ public class Ejercicios_bucles_02 {
     // el mínimo y la media de todos ellos.
     // El 0 solo sirve para finalizar y no se cuenta.
     public static void ejercicio7() {
-        boolean contador = false; 
-        int numero_entero_suma = 0;
-        System.out.println("Introduce un numero: ");
-        
-        
-    }
-
-    // EJERCICIO 8:
-    // Implementar una calculadora simple con un menú de suma,
-    // resta, multiplicación, división, comprobación de números
-    // primos y salida. Repetir hasta seleccionar Salir.
-    public static void ejercicio8() {
-
-        int opcion;
+        int numero;
+        int suma = 0;
+        int contador = 0;
+        int maximo = 0;
+        int minimo = Integer.MAX_VALUE;
 
         do {
-            System.out.println("\n===== CALCULADORA =====");
-            System.out.println("1. Sumar");
-            System.out.println("2. Restar");
-            System.out.println("3. Multiplicar");
-            System.out.println("4. Dividir");
-            System.out.println("5. Es primo");
-            System.out.println("6. Salir");
-            System.out.print("Elige una opción: ");
+            System.out.print("Introduce un número (0 para terminar): ");
+            numero = teclado.nextInt();
 
-            opcion = teclado.nextInt();
+            if (numero != 0) {
+                if (contador == 0) {
+                    maximo = numero;
+                    minimo = numero;
+                } else {
+                    if (numero > maximo) maximo = numero;
+                    if (numero < minimo) minimo = numero;
+                }
 
-            double numero1;
-            double numero2;
-
-            switch (opcion) {
-                case 1:
-                    System.out.print("Introduce el primer número: ");
-                    numero1 = teclado.nextDouble();
-                    System.out.print("Introduce el segundo número: ");
-                    numero2 = teclado.nextDouble();
-
-                    System.out.println("Resultado: " + (numero1 + numero2));
-                    break;
-
-                case 2:
-                    System.out.print("Introduce el primer número: ");
-                    numero1 = teclado.nextDouble();
-                    System.out.print("Introduce el segundo número: ");
-                    numero2 = teclado.nextDouble();
-
-                    System.out.println("Resultado: " + (numero1 - numero2));
-                    break;
-
-                case 3:
-                    System.out.print("Introduce el primer número: ");
-                    numero1 = teclado.nextDouble();
-                    System.out.print("Introduce el segundo número: ");
-                    numero2 = teclado.nextDouble();
-
-                    System.out.println("Resultado: " + (numero1 * numero2));
-                    break;
-
-                case 4:
-                    System.out.print("Introduce el primer número: ");
-                    numero1 = teclado.nextDouble();
-                    System.out.print("Introduce el segundo número: ");
-                    numero2 = teclado.nextDouble();
-
-                    if (numero2 == 0) {
-                        System.out.println("No se puede dividir entre cero.");
-                    } else {
-                        System.out.println("Resultado: " + (numero1 / numero2));
-                    }
-                    break;
-
-                case 5:
-                    System.out.print("Introduce un número entero: ");
-                    int numero = teclado.nextInt();
-
-                    boolean primo = numero >= 2;
-
-                    for (int i = 2; primo && i <= numero / i; i++) {
-                        if (numero % i == 0) {
-                            primo = false;
-                        }
-                    }
-
-                    if (primo) {
-                        System.out.println(numero + " es primo.");
-                    } else {
-                        System.out.println(numero + " no es primo.");
-                    }
-                    break;
-
-                case 6:
-                    System.out.println("Hasta pronto.");
-                    break;
-
-                default:
-                    System.out.println("Opción incorrecta.");
+                suma += numero;
+                contador++;
             }
 
-        } while (opcion != 6);
-    }
+        } while (numero != 0);
 
-    // EJERCICIO 9:
-    // Pedir un DNI por teclado, dividir el número entre 23 y utilizar
-    // el resto para calcular la letra correspondiente según la tabla.
-    public static void ejercicio9() {
-
-        System.out.print("Introduce el número del DNI: ");
-        int dni = teclado.nextInt();
-
-        if (dni < 0) {
-            System.out.println("El DNI no puede ser negativo.");
-            return;
+        if (contador > 0) {
+            System.out.println("Máximo: " + maximo);
+            System.out.println("Mínimo: " + minimo);
+            System.out.println("Media: " + (double) suma / contador);
+        } else {
+            System.out.println("No has introducido ningún número.");
         }
+    } 
+
+    /*Ejercicio 9: Diseña un programa que calcule la letra de un DNI. Para ello: 
+    o 1º Pediremos el DNI por teclado al usuario. 
+    o 2º Para calcular la letra, cogeremos el DNI y lo dividiremos entre 23 quedándonos con el 
+    resto de la división, que debe estar entre 0 y 22. 
+    o Comprobaremos en la siguiente tabla, en función del resto obtenido en el paso anterior, cuál 
+    es la letra que corresponde*/
+
+    public static void ejercicio9 (){
+
+        int numero_dni = 0;
 
         String letras = "TRWAGMYFPDXBNJZSQVHLCKE";
-        int resto = dni % 23;
-        char letra = letras.charAt(resto);
+        String letra_asignada = "";
+        System.out.println("Introduce el numero del DNI: ");
 
-        System.out.println("DNI completo: " + dni + letra);
-    }
 
-    // EJERCICIO 10:
-    // Solicitar una cadena y comprobar cuántas vocales tiene.
-    // Utilizar charAt(i) para extraer cada carácter de la cadena.
-    public static void ejercicio10() {
+        numero_dni = teclado.nextInt();
 
-        teclado.nextLine(); // Limpiar el salto de línea pendiente.
+        String numero_dni_cadena = String.valueOf(numero_dni);
 
-        System.out.print("Introduce una cadena: ");
-        String cadena = teclado.nextLine().toLowerCase();
+        if (numero_dni_cadena.length() == 7) {
 
-        int vocales = 0;
+            int resto = numero_dni%7;
 
-        for (int i = 0; i < cadena.length(); i++) {
-            char caracter = cadena.charAt(i);
+            for (int i = 0; i <= 22; i++) {
+                
+                if (resto == i) {
 
-            if (caracter == 'a' || caracter == 'e'
-                    || caracter == 'i' || caracter == 'o'
-                    || caracter == 'u' || caracter == 'á'
-                    || caracter == 'é' || caracter == 'í'
-                    || caracter == 'ó' || caracter == 'ú'
-                    || caracter == 'ü') {
-                vocales++;
-            }
-        }
+                    char letra_DNI = letras.charAt(i);
+                    letra_asignada = String.valueOf(letra_DNI);
 
-        System.out.println("Número de vocales: " + vocales);
-    }
-
-    // EJERCICIO 11:
-    // Controlar el acceso a una caja fuerte con una combinación
-    // de cuatro cifras. El usuario dispone de cuatro oportunidades.
-    // Si falla, mostrar los intentos restantes; si acierta, indicar
-    // que ha abierto la caja fuerte.
-    public static void ejercicio11() {
-
-        final int CLAVE = 1234;
-        int intentos = 4;
-        boolean abierta = false;
-
-        while (intentos > 0 && !abierta) {
-
-            System.out.print("Introduce la combinación de cuatro cifras: ");
-            int claveIntroducida = teclado.nextInt();
-
-            if (claveIntroducida == CLAVE) {
-                abierta = true;
-                System.out.println("Has abierto la caja fuerte.");
-            } else {
-                intentos--;
-
-                if (intentos > 0) {
-                    System.out.println(
-                        "Clave incorrecta, le quedan "
-                        + intentos + " intentos."
-                    );
-                } else {
-                    System.out.println(
-                        "Lo siento, has agotado las 4 oportunidades."
-                    );
                 }
+
             }
+            System.out.println(letra_asignada);
+            
         }
+
+
+
+
+    } 
+
+    /*Ejercicio 13: Realiza un algoritmo que permita calcular un número determinado de elementos de la
+    serie de Fibonacci, teniendo en cuenta que cada uno es la suma de los dos elementos anteriores, con
+    la excepción de los dos primeros, que son 0 y 1. Así, la serie estaría formada por los números: 0, 1, 1,
+    2, 3, 5, 8, 13, 21… */
+    public static void Secuencia_fibonacci() throws InterruptedException {
+
+        int numero_inicial = 1;
+        int numero_siguiente = 0;
+        
+        int numero_anterior = 1;  
+
+        System.out.print(0 + ", " + 1 + ", " + 1 + ", "); 
+        
+        boolean parar_recuento = false;
+
+        
+
+         while (parar_recuento == false) {
+
+            
+            numero_siguiente = numero_inicial + numero_anterior; // numero siguiente se transforma en n2 = n1 + n0
+
+             //n2
+            System.out.print(numero_siguiente + ", "); 
+
+            numero_anterior = numero_inicial; // n0 = n1
+
+            numero_inicial = numero_siguiente;   // n1 = n2
+            
+            Thread.sleep(500);
+            
+         }
+        
+
+
     }
 
-    // EJERCICIO 12:
-    // Comprobar si dos números son amigos.
-    // La suma de los divisores propios del primero debe ser el segundo,
-    // y la suma de los divisores propios del segundo debe ser el primero.
-    public static void ejercicio12() {
+    public static void ejercicio13 (){
 
-        System.out.print("Introduce el primer número: ");
-        int numero1 = teclado.nextInt();
 
-        System.out.print("Introduce el segundo número: ");
-        int numero2 = teclado.nextInt();
+        
 
-        if (numero1 <= 0 || numero2 <= 0) {
-            System.out.println("Introduce números positivos.");
-            return;
+        boolean puerta = false;
+
+
+        
+        while (puerta == false) {
+
+             
+
+            
+
+            
+            
         }
 
-        int suma1 = 0;
-        int suma2 = 0;
 
-        for (int i = 1; i <= numero1 / 2; i++) {
-            if (numero1 % i == 0) {
-                suma1 += i;
-            }
-        }
 
-        for (int i = 1; i <= numero2 / 2; i++) {
-            if (numero2 % i == 0) {
-                suma2 += i;
-            }
-        }
-
-        if (suma1 == numero2 && suma2 == numero1) {
-            System.out.println(numero1 + " y " + numero2 + " son amigos.");
-        } else {
-            System.out.println(numero1 + " y " + numero2 + " no son amigos.");
-        }
     }
 
-    // EJERCICIO 13:
-    // Calcular un número determinado de elementos de la serie
-    // de Fibonacci. Los dos primeros son 0 y 1; cada elemento
-    // siguiente es la suma de los dos anteriores.
-    public static void ejercicio13() {
 
-        System.out.print("¿Cuántos elementos quieres mostrar? ");
-        int cantidad = teclado.nextInt();
 
-        if (cantidad <= 0) {
-            System.out.println("La cantidad debe ser mayor que cero.");
-            return;
-        }
 
-        int anterior = 0;
-        int actual = 1;
 
-        for (int i = 1; i <= cantidad; i++) {
 
-            System.out.print(anterior);
 
-            if (i < cantidad) {
-                System.out.print(" ");
-            }
 
-            int siguiente = anterior + actual;
-            anterior = actual;
-            actual = siguiente;
-        }
 
-        System.out.println();
-    }
+
+
+
+
+
+
+
+
+
+
+ 
 }
