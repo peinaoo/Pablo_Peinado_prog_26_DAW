@@ -6,7 +6,7 @@ public class Ejercicios_bucles_02 {
     static Scanner teclado = new Scanner(System.in);
 
     public static void main(String[] args) throws InterruptedException{
-        ejercicio12();
+        ejercicio13();
         
     }
 
@@ -333,7 +333,6 @@ public class Ejercicios_bucles_02 {
 
         int numero_inicial = 1;
         int numero_siguiente = 0;
-        
         int numero_anterior = 1;  
 
         System.out.print(0 + ", " + 1 + ", " + 1 + ", "); 
@@ -355,6 +354,10 @@ public class Ejercicios_bucles_02 {
             numero_inicial = numero_siguiente;   // n1 = n2
             
             Thread.sleep(500);
+
+            if (teclado.nextLine().toUpperCase() == "O") {
+                parar_recuento = true;
+            }
             
          }
         
